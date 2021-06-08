@@ -14,15 +14,17 @@ header {
     border-bottom: 1px solid black;
 }
 
-.movies {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.content {
     padding: 10px 0;
 }
 
-.movie { 
-    width: calc((100vw - 30px ) / 5);
+.movies, .shows { 
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie, .tvshow { 
+    width: calc((100vw - 30px ) / 8);
     height: 200px;
     border: 1px solid gray;
     display: flex;
@@ -30,4 +32,4 @@ header {
     justify-content: center;
 }
 
-.movie .flag { width: 16px; }
+.flag { width: 16px; }
