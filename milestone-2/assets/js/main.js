@@ -15,9 +15,17 @@ const app = new Vue({
          */
         getFlag(code) {
             let flagUrl = '';
+
             switch (code) {
                 case "en":
                     flagUrl = "https://www.countryflags.io/us/shiny/32.png";
+                    break;
+                case "zh":
+                case "da":
+                case "ja":
+                case "ko":
+                case "he":
+                    flagUrl = './assets/img/no-img.png';
                     break;
                 default: 
                     flagUrl = `https://www.countryflags.io/${code}/shiny/32.png`;
