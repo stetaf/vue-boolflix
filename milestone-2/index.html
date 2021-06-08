@@ -25,12 +25,24 @@
         <!-- /Header -->
 
         <!-- Main -->
-        <div class="movies">
-            <div class="movie" v-for="movie in moviesRes">
-                <h2>{{ movie.title }}</h2>
-                <h3>{{ movie.original_title }}</h3>
-                <img class="flag" :src="getFlag(movie.original_language)">
-                <h4>{{ movie.vote_average }}</h4>
+        <div class="content">
+            <h2 v-show="moviesRes.length > 0">Movies</h2>
+            <div class="movies">
+                <div class="movie" v-for="movie in moviesRes">
+                    <h2>{{ movie.title }}</h2>
+                    <h3>{{ movie.original_title }}</h3>
+                    <img class="flag" :src="getFlag(movie.original_language)">
+                    <h4>{{ movie.vote_average }}</h4>
+                </div>
+            </div>
+            <h2 v-show="seriesRes.length > 0">Tv Shows</h2>
+            <div class="shows">
+                <div class="tvshow" v-for="tvshow in seriesRes">
+                    <h2>{{ tvshow.name }}</h2>
+                    <h3>{{ tvshow.original_name }}</h3>
+                    <img class="flag" :src="getFlag(tvshow.original_language)">
+                    <h4>{{ tvshow.vote_average }}</h4>
+                </div>
             </div>
         </div>
         <!-- /Main -->
