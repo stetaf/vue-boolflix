@@ -8,19 +8,35 @@ const app = new Vue({
     },
     methods: {
         /**
-         * ### Search
-         * Make a call to retreive films with the query the user entered
+         * ### getFlag
+         * @param {String} code 
+         * @returns the flag image url
          */
-        search() {
-            axios
-            .get(this.moviesUrl + this.querySearch)
-            .then(resp => {
-                this.response = resp.data;
-                this.moviesRes = this.response.results;
-            })
+        getFlag(code) {
+            let flagUrl = '';
+            switch (code) {
+                case "en":
+                    flagUrl = "https://www.countryflags.io/us/shiny/32.png";
+                    break;
+                default: 
+                    flagUrl = `https://www.countryflags.io/${code}/shiny/32.png`;
+                    break;
+            }     
+            return flagUrl;
         }
     },
     mounted: function() {
-
+        let button = document.querySelector('#search_btn')
+        
+        button.addEventListener("click", () => {
+            let search = document.querySelector('#search_value').value;
+            
+            axios
+            .get(this.moviesUrl + search)
+            .then(resp => {
+                this.response = resp.data;
+                this.moviesRes = this.response.results;
+            });
+        });
     }
 });
