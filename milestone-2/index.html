@@ -40,7 +40,7 @@
                 <div class="tvshow" v-for="tvshow in seriesRes">
                     <h3>{{ tvshow.name }}</h3>
                     <h4>{{ tvshow.original_name }}</h4>
-                    <img class="flag" :src="getFlag(tvshow.original_language)">
+                    <img class="flag" :src="getFlag(tvshow.original_language)" onError="this.src='./assets/img/no-img.png'">
                     <h4>{{ tvshow.vote_average }}</h4>
                 </div>
             </div>
