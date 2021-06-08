@@ -4,6 +4,8 @@ const app = new Vue({
         querySearch: '',
         moviesUrl: 'https://api.themoviedb.org/3/search/movie?api_key=5eb5e38903b62b2d5616df76724f5b67&language=en-US&page=1&include_adult=false&query=',
         moviesRes: '',
+        seriesUrl: 'https://api.themoviedb.org/3/search/tv?api_key=5eb5e38903b62b2d5616df76724f5b67&language=it_IT&query=',
+        seriesRes: '',
         response: ''
     },
     methods: {
@@ -31,12 +33,20 @@ const app = new Vue({
         button.addEventListener("click", () => {
             let search = document.querySelector('#search_value').value;
             
+            const movies = axios.get(this.moviesUrl + search);
+            const tvshows = axios.get(this.seriesUrl + search);
+
             axios
-            .get(this.moviesUrl + search)
-            .then(resp => {
-                this.response = resp.data;
-                this.moviesRes = this.response.results;
-            });
+            .all([movies, tvshows])
+            .then(axios.spread((...responses) => {
+                const movies_res = responses[0];
+                const tvshows_res = responses[1];
+                
+                console.log(movies_res);
+
+                this.moviesRes = movies_res.data.results;
+                this.seriesRes = tvshows_res.data.results;
+            }));
         });
     }
 });
