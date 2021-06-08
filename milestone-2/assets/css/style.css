@@ -29,3 +29,5 @@ header {
     flex-direction: column;
     justify-content: center;
 }
+
+.movie .flag { width: 16px; }
