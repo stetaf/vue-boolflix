@@ -1,7 +1,6 @@
 const app = new Vue({
     el: '#app',
     data: {
-        querySearch: '',
         moviesUrl: 'https://api.themoviedb.org/3/search/movie?api_key=5eb5e38903b62b2d5616df76724f5b67&language=en-US&page=1&include_adult=false&query=',
         moviesRes: '',
         seriesUrl: 'https://api.themoviedb.org/3/search/tv?api_key=5eb5e38903b62b2d5616df76724f5b67&language=it_IT&query=',
@@ -10,6 +9,7 @@ const app = new Vue({
     methods: {
         /**
          * ### getFlag
+         * Retrieve the flag image for a specific language
          * @param {String} code 
          * @returns the flag image url
          */
@@ -26,6 +26,7 @@ const app = new Vue({
             return flagUrl;
         }
     },
+    // Add an event listener to the search button for the API calls
     mounted: function() {
         let button = document.querySelector('#search_btn')
         
