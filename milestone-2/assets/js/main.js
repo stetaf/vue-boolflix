@@ -39,13 +39,8 @@ const app = new Vue({
             axios
             .all([movies, tvshows])
             .then(axios.spread((...responses) => {
-                const movies_res = responses[0];
-                const tvshows_res = responses[1];
-                
-                console.log(movies_res);
-
-                this.moviesRes = movies_res.data.results;
-                this.seriesRes = tvshows_res.data.results;
+                this.moviesRes = responses[0].data.results;
+                this.seriesRes = responses[1].data.results;
             }));
         });
     }
