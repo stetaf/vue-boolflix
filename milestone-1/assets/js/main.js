@@ -7,6 +7,10 @@ const app = new Vue({
         response: ''
     },
     methods: {
+        /**
+         * ### Search
+         * Make a call to retreive films with the query the user entered
+         */
         search() {
             axios
             .get(this.moviesUrl + this.querySearch)
