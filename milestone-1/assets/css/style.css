@@ -13,3 +13,19 @@ header {
     justify-content: flex-end;
     border-bottom: 1px solid black;
 }
+
+.movies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.movie { 
+    width: calc((100vw - 30px ) / 5);
+    height: 200px;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
