@@ -32,7 +32,13 @@ const app = new Vue({
             .all([movies, tvshows])
             .then(axios.spread((...responses) => {
                 this.moviesRes = responses[0].data.results;
+                this.moviesRes.forEach(element => {
+                    element.stars = Math.ceil(5 * (element.vote_average / 10));
+                });
                 this.seriesRes = responses[1].data.results;
+                this.seriesRes.forEach(element => {
+                    element.stars = Math.ceil(5 * (element.vote_average / 10));
+                });
             }));
         });
     }
