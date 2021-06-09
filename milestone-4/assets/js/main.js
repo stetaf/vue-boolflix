@@ -14,23 +14,7 @@ const app = new Vue({
          * @returns the flag image url
          */
         getFlag(code) {
-            let flagUrl = '';
-
-            switch (code) {
-                case "en":
-                    flagUrl = "https://www.countryflags.io/us/shiny/32.png";
-                    break;
-                case "zh":
-                case "da":
-                case "ja":
-                case "ko":
-                case "he":
-                    flagUrl = './assets/img/no-img.png';
-                    break;
-                default: 
-                    flagUrl = `https://www.countryflags.io/${code}/shiny/32.png`;
-                    break;
-            }     
+            let flagUrl = 'https://www.unknown.nu/flags/images/' + code + '-100';
             return flagUrl;
         }
     },
