@@ -32,7 +32,7 @@ nav > div {
     align-items: center;
 }
 
-h2 { 
+main > h2 { 
     color: lightgray;
     padding-top: 20px;
     font-size: 28px;
@@ -141,7 +141,8 @@ h4 {
     font-size: 14px;
 }
 
-.ovw {
+.ovw, 
+#modal #overview {
     display: -webkit-box;
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical; 
@@ -149,10 +150,68 @@ h4 {
     font-size: 13px;
 }
 
+.movie_overview > span,
+.tvshow_overview > span {
+    font-size: 13px;
+    text-decoration: underline;
+    font-style: italic;
+}
+
 .flag { 
     width: 16px; 
     border: 1px solid gray;
 }
+
+.modal {
+    color: black !important;
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+
+  .modal-content {
+    background-color: #565656;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    height: 500px;
+  }
+
+  #mcontent { 
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #modal h3 { margin-top: 10px; }
+
+  #cast { margin-left: 20px; }
+
+  #cast li,
+  #genre { font-size: 14px; }
 
 /* FUNC */
 .p_lr25 { padding: 0 25px; }
