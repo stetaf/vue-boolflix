@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boolflix</title>
+    <!-- Stylesheet -->
+    <link rel='stylesheet' href='./assets/css/style.css'>
+    <!-- Vue -->
+    <script src='https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js'></script>
+    <!-- Axios -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js' integrity='sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header>
+            <nav>
+                <span>Cerca un film:</span>
+                <input type="text" id="search_value">
+                <input type="submit" value="Cerca" id="search_btn">
+            </nav>
+        </header>
+        <!-- /Header -->
+
+        <!-- Main -->
+        <div class="content">
+            <h2 v-show="moviesRes.length > 0">Movies</h2>
+            <div class="movies">
+                <div class="movie" v-for="movie in moviesRes">
+                    <h3>{{ movie.title }}</h3>
+                    <h4>{{ movie.original_title }}</h4>
+                    <img class="flag" :src="getFlag(movie.original_language)" onError="this.src='./assets/img/no-img.png'">
+                    <h4>{{ movie.vote_average }}</h4>
+                </div>
+            </div>
+            <h2 v-show="seriesRes.length > 0">Tv Shows</h2>
+            <div class="shows">
+                <div class="tvshow" v-for="tvshow in seriesRes">
+                    <h3>{{ tvshow.name }}</h3>
+                    <h4>{{ tvshow.original_name }}</h4>
+                    <img class="flag" :src="getFlag(tvshow.original_language)" onError="this.src='./assets/img/no-img.png'">
+                    <h4>{{ tvshow.vote_average }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- /Main -->
+    </div>
+
+    <!-- App -->
+    <script src='./assets/js/main.js'></script>
+</body>
+</html>
