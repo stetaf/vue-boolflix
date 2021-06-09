@@ -15,9 +15,22 @@ header {
 
 #search_value { 
     padding: 5px 10px;
-    border-radius: 6px;
+    border-radius: 3px;
     outline: 0px;
     border: 0px;
+}
+
+#search_btn { 
+    padding: 5px 10px;
+    border-radius: 3px;
+    outline: 0px;
+    border: 0px;
+    font-weight: bolder;
+}
+
+#search_btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(206, 0, 0, 0.2);
 }
 
 .content {
