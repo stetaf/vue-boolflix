@@ -36,7 +36,7 @@
         <main class="p_lr25">
             <h2 v-show="moviesRes.length > 0">Movies</h2>
             <div class="movies">
-                <div class="movie" v-for="movie in moviesRes" v-bind:style="{'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'}">
+                <div class="movie" v-for="movie in moviesRes" v-bind:style="[ (movie.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]"> 
                     <div>
                         <div class="movie_info">
                             <h3>{{ movie.title }}</h3>
@@ -60,7 +60,7 @@
             </div> 
             <h2 v-show="seriesRes.length > 0">Tv Shows</h2>
             <div class="shows">
-                <div class="tvshow" v-for="tvshow in seriesRes" v-bind:style="{'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'}">
+                <div class="tvshow" v-for="tvshow in seriesRes" v-bind:style="[ (tvshow.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]">
                     <div>
                         <div class="tvshow_info">
                             <h3>{{ tvshow.name }}</h3>
