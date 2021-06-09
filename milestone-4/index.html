@@ -33,10 +33,17 @@
             <div class="movies">
                 <div class="movie" v-for="movie in moviesRes" v-bind:style="{'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'}">
                     <div>
-                        <h3>{{ movie.title }}</h3>
-                        <h4>{{ movie.original_title }}</h4>
-                        <img class="flag" :src="getFlag(movie.original_language)" onError="this.src='./assets/img/no-img.png'">
-                        <h4>{{ movie.vote_average }}</h4>
+                        <div class="movie_info">
+                            <h3>{{ movie.title }}</h3>
+                            <span>{{ movie.original_title }}</span>
+                        </div>
+                        <div class="movie_overview">
+                            <p class="ovw">{{ movie.overview }}</p>
+                        </div>
+                        <div class="movie_data">
+                            <img class="flag" :src="getFlag(movie.original_language)" onError="this.src='./assets/img/no-img.png'" width="16" height="12">
+                            <h4>Voto: <span>{{ movie.vote_average }}</span></h4>
+                        </div>
                     </div>
                 </div>
             </div> 
@@ -44,10 +51,17 @@
             <div class="shows">
                 <div class="tvshow" v-for="tvshow in seriesRes" v-bind:style="{'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'}">
                     <div>
-                        <h3>{{ tvshow.name }}</h3>
-                        <h4>{{ tvshow.original_name }}</h4>
-                        <img class="flag" :src="getFlag(tvshow.original_language)" onError="this.src='./assets/img/no-img.png'">
-                        <h4>{{ tvshow.vote_average }}</h4>
+                        <div class="tvshow_info">
+                            <h3>{{ tvshow.name }}</h3>
+                            <span>{{ tvshow.original_name }}</span>
+                        </div>
+                        <div class="tvshow_overview">
+                            <p class="ovw">{{ tvshow.overview }}</p>
+                        </div>
+                        <div class="tvshow_data">
+                            <img class="flag" :src="getFlag(tvshow.original_language)" onError="this.src='./assets/img/no-img.png'" width="16" height="12">
+                            <h4>{{ tvshow.vote_average }}</h4>
+                        </div>
                     </div>
                 </div>
             </div>
