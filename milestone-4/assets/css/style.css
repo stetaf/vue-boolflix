@@ -6,6 +6,8 @@
 }
 
 /* PAGE */
+body { background-color: #171815; }
+
 header { 
     height: 75px;
     display: flex;
