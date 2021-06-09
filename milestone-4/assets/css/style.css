@@ -36,25 +36,21 @@ header {
     box-shadow: 0 5px 10px rgba(206, 0, 0, 0.2);
 }
 
-.content {
-    padding: 10px 0;
-}
-
 .movies, .shows { 
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 225px);
+    justify-content: space-between;
+    grid-gap: 20px;
 }
 
 .movie, .tvshow { 
-    width: 200px;
-    height: 300px;
+    height: 350px;
     border: 1px solid gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     position: relative;
     background-size: cover;
 }
+
+.hidden { visibility: hidden; }
 
 .movie div, .tvshow div { 
     display: none;
