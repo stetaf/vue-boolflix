@@ -29,6 +29,7 @@
             <h2 v-show="moviesRes.length > 0">Movies</h2>
             <div class="movies">
                 <div class="movie" v-for="movie in moviesRes">
+                    <img :src='`https://image.tmdb.org/t/p/w342` + movie.poster_path'>
                     <h3>{{ movie.title }}</h3>
                     <h4>{{ movie.original_title }}</h4>
                     <img class="flag" :src="getFlag(movie.original_language)" onError="this.src='./assets/img/no-img.png'">
@@ -38,6 +39,7 @@
             <h2 v-show="seriesRes.length > 0">Tv Shows</h2>
             <div class="shows">
                 <div class="tvshow" v-for="tvshow in seriesRes">
+                    <img :src='`https://image.tmdb.org/t/p/w342` + tvshow.poster_path'>
                     <h3>{{ tvshow.name }}</h3>
                     <h4>{{ tvshow.original_name }}</h4>
                     <img class="flag" :src="getFlag(tvshow.original_language)" onError="this.src='./assets/img/no-img.png'">
