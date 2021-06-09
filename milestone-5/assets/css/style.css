@@ -163,7 +163,7 @@ h4 {
 }
 
 .modal {
-    color: black !important;
+    color: #d4d0d0;
     display: none;
     position: fixed;
     z-index: 1;
@@ -177,7 +177,7 @@ h4 {
   }
 
   .modal-content {
-    background-color: #565656;
+    background-color: #171815;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
