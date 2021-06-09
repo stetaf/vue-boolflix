@@ -4,14 +4,13 @@
     margin: 0;
 }
 
-#app { padding: 0 15px; }
-
+/* PAGE */
 header { 
-    height: 50px;
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    border-bottom: 1px solid black;
+    background: black;
 }
 
 .content {
@@ -33,3 +32,6 @@ header {
 }
 
 .flag { width: 16px; }
+
+/* FUNC */
+.p_lr25 { padding: 0 25px; }
