@@ -36,7 +36,7 @@
         <main class="p_lr25">
             <h2 v-show="moviesRes.length > 0">Movies</h2>
             <div class="movies">
-                <div class="movie" v-for="movie in moviesRes" v-bind:style="[ (movie.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]"> 
+                <div class="movie" v-for="(movie, index) in moviesRes" v-bind:style="[ (movie.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]"> 
                     <div>
                         <div class="movie_info">
                             <h3>{{ movie.title }}</h3>
@@ -44,6 +44,7 @@
                         </div>
                         <div class="movie_overview">
                             <p class="ovw">{{ movie.overview }}</p>
+                            <span @click="openModalMovie(index)">Click for more...</span>
                         </div>
                         <div class="movie_data">
                             <img class="flag" :src="getFlag(movie.original_language)" onError="this.src='./assets/img/no-img.png'" width="16" height="12">
@@ -60,7 +61,7 @@
             </div> 
             <h2 v-show="seriesRes.length > 0">Tv Shows</h2>
             <div class="shows">
-                <div class="tvshow" v-for="tvshow in seriesRes" v-bind:style="[ (tvshow.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]">
+                <div class="tvshow" v-for="(tvshow, index) in seriesRes" v-bind:style="[ (tvshow.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]">
                     <div>
                         <div class="tvshow_info">
                             <h3>{{ tvshow.name }}</h3>
@@ -68,6 +69,7 @@
                         </div>
                         <div class="tvshow_overview">
                             <p class="ovw">{{ tvshow.overview }}</p>
+                            <span @click="openModalShow(index)">Click for more...</span>
                         </div>
                         <div class="tvshow_data">
                             <img class="flag" :src="getFlag(tvshow.original_language)" onError="this.src='./assets/img/no-img.png'" width="16" height="12">
@@ -78,6 +80,25 @@
                                     <i class="fas fa-star" v-for="index in (5 - tvshow.stars)"></i>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close" @click="closeModal()">&times;</span>
+                    <div id="mcontent">
+                        <div>
+                            <h2 id="mtitle"></h2>
+                            <p id="overview"></p>
+                        </div>
+                        <div>
+                            <h3>Cast</h3>
+                            <ul id="cast"></ul>
+                        </div>
+                        <div>
+                            <h3>Genre</h3>
+                            <span id="genre"></span>
                         </div>
                     </div>
                 </div>
