@@ -52,7 +52,10 @@ header {
     justify-content: center;
 }
 
-.flag { width: 16px; }
+.flag { 
+    width: 16px; 
+    border: 1px solid gray;
+}
 
 /* FUNC */
 .p_lr25 { padding: 0 25px; }
