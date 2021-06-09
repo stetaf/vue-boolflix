@@ -44,12 +44,29 @@ header {
 }
 
 .movie, .tvshow { 
-    width: calc((100vw - 30px ) / 8);
-    height: 200px;
+    /* width: calc((100vw - 30px ) / 8); */
+    width: 200px;
+    height: 300px;
     border: 1px solid gray;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+}
+
+.poster { 
+    object-fit: cover;
+    height: 300px;
+}
+
+.movie div, .tvshow div { 
+    display: none;
+    position: absolute;
+}
+
+.movie:hover > div,
+.tvshow:hover > div {
+    display: block;
 }
 
 .flag { 
