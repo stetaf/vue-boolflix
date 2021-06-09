@@ -28,7 +28,7 @@
         <!-- /Header -->
 
         <!-- Main -->
-        <div class="content">
+        <main class="p_lr25">
             <h2 v-show="moviesRes.length > 0">Movies</h2>
             <div class="movies">
                 <div class="movie" v-for="movie in moviesRes" v-bind:style="{'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'}">
@@ -39,7 +39,7 @@
                         <h4>{{ movie.vote_average }}</h4>
                     </div>
                 </div>
-            </div>
+            </div> 
             <h2 v-show="seriesRes.length > 0">Tv Shows</h2>
             <div class="shows">
                 <div class="tvshow" v-for="tvshow in seriesRes" v-bind:style="{'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'}">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         <!-- /Main -->
     </div>
 
