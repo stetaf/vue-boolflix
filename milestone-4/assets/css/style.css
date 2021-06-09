@@ -79,6 +79,14 @@ header {
     align-items: center;
 }
 
+.movie_data > div,
+.tvshow_data > div { display: flex; }
+
+.stars { 
+    display: flex; 
+    padding-top: 1px;
+}
+
 h3 { border-bottom: 1px solid black; }
 
 h4 { 

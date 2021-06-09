@@ -7,6 +7,8 @@
     <title>Boolflix</title>
     <!-- Stylesheet -->
     <link rel='stylesheet' href='./assets/css/style.css'>
+    <!-- FontAwesome -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' integrity='sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==' crossorigin='anonymous' />
     <!-- Vue -->
     <script src='https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js'></script>
     <!-- Axios -->
@@ -42,7 +44,13 @@
                         </div>
                         <div class="movie_data">
                             <img class="flag" :src="getFlag(movie.original_language)" onError="this.src='./assets/img/no-img.png'" width="16" height="12">
-                            <h4>Voto: <span>{{ movie.vote_average }}</span></h4>
+                            <div>
+                                <h4>{{ movie.vote_average }}</h4>
+                                <div class="stars">
+                                    <i class="fas fa-star" style="color: yellow" v-for="index in movie.stars"></i>
+                                    <i class="fas fa-star" v-for="index in (5 - movie.stars)"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -60,7 +68,13 @@
                         </div>
                         <div class="tvshow_data">
                             <img class="flag" :src="getFlag(tvshow.original_language)" onError="this.src='./assets/img/no-img.png'" width="16" height="12">
-                            <h4>{{ tvshow.vote_average }}</h4>
+                            <div>
+                                <h4>{{ tvshow.vote_average }}</h4>
+                                <div class="stars">
+                                    <i class="fas fa-star" style="color: yellow" v-for="index in tvshow.stars"></i>
+                                    <i class="fas fa-star" v-for="index in (5 - tvshow.stars)"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
