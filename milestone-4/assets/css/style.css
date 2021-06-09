@@ -50,8 +50,6 @@ header {
     background-size: cover;
 }
 
-.hidden { visibility: hidden; }
-
 .movie div, .tvshow div { 
     display: none;
     position: absolute;
