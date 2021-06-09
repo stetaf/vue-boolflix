@@ -106,6 +106,17 @@ h2 {
     align-items: center;
 }
 
+.movie_info h5,
+.tvshow_info h5 {
+    font-style: italic;
+    font-weight: normal;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-height: 17px;
+}
+
 .movie_data > div,
 .tvshow_data > div { display: flex; }
 
@@ -114,7 +125,10 @@ h2 {
     padding-top: 1px;
 }
 
-h3 { border-bottom: 1px solid black; }
+h3 { 
+    border-bottom: 1px solid black;
+    line-height: 22px;
+}
 
 h4 { 
     font-size: 14px;
