@@ -47,7 +47,7 @@ header {
 .movie, 
 .tvshow { 
     height: 350px;
-    border: 1px solid gray;
+    border: 1px solid #383737;
     position: relative;
     background-size: cover;
 }
