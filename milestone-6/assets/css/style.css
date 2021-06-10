@@ -50,7 +50,7 @@ main .filter h3 {
     margin-right: 5px;
 }
 
-main > div > h2 { 
+.smallTitle { 
     padding-top: 20px;
     font-size: 28px;
  }
