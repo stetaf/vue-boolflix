@@ -34,8 +34,17 @@
 
         <!-- Main -->
         <main class="p_lr25">
-            <h2 v-show="moviesRes.length > 0">Movies</h2>
-            <div class="movies">
+            <div v-show="moviesRes.length > 0">
+                <h2>Movies</h2>
+                <div class="filter">
+                    <h3>Filter by genre:</h3>
+        
+                    <select name="f_genre" id="f_genre">
+                        <option value="Boh">Boh</option>
+                    </select>
+                </div>
+            </div>
+            <div class="movies"  v-show="moviesRes.length > 0">
                 <div class="movie" v-for="(movie, index) in moviesRes" v-bind:style="[ (movie.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]"> 
                     <div>
                         <div class="movie_info">
@@ -59,8 +68,17 @@
                     </div>
                 </div>
             </div> 
-            <h2 v-show="seriesRes.length > 0">Tv Shows</h2>
-            <div class="shows">
+            <div v-show="seriesRes.length > 0">
+                <h2>Tv Shows</h2>
+                <div class="filter">
+                    <h3>Filter by genre:</h3>
+        
+                    <select name="f_genre" id="f_genre">
+                        <option value="Boh">Boh</option>
+                    </select>
+                </div>
+            </div>
+            <div class="shows" v-show="seriesRes.length > 0">
                 <div class="tvshow" v-for="(tvshow, index) in seriesRes" v-bind:style="[ (tvshow.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]">
                     <div>
                         <div class="tvshow_info">
