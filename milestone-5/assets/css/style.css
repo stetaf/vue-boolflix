@@ -32,6 +32,8 @@ nav > div {
     align-items: center;
 }
 
+nav > div > span { color: lightgray; }
+
 main > h2 { 
     color: lightgray;
     padding-top: 20px;
