@@ -106,7 +106,7 @@ const app = new Vue({
             .all([movies, tvshows])
             .then(axios.spread((...responses) => {
                 this.moviesRes = responses[0].data.results;
-                this.moviesRes.forEach((element, index) => {
+                this.moviesRes.forEach(element => {
                     element.stars = Math.ceil(5 * (element.vote_average / 10));
                     axios
                     .get(this.moviesCast.replace('{movie_id}', element.id))
