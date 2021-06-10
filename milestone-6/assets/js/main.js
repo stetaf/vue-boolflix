@@ -8,8 +8,11 @@ const app = new Vue({
         seriesRes: '',
         seriesCast: 'https://api.themoviedb.org/3/tv/{tv_id}/credits?api_key=5eb5e38903b62b2d5616df76724f5b67&language=en-US',
         genreUrl: 'https://api.themoviedb.org/3/genre/movie/list?api_key=5eb5e38903b62b2d5616df76724f5b67&language=en-US',
-        genre: null,
-        notFound: './assets/img/not-found.jpg'
+        genre: '',
+        notFound: './assets/img/not-found.jpg',
+        resultsFilter: '',
+        movieEmpty: null,
+        tvshowEmpty: null
     },
     methods: {
         /**
@@ -87,6 +90,30 @@ const app = new Vue({
          */
         closeModal() {
             document.querySelector('#modal').style.display = 'none';
+        },
+        /**
+         * ### noResults
+         * Upon selecting an option in the genre filter, determine whether there are results given the genre id or not
+         * @param {Number} fil 
+         */
+        noResults(fil) {
+            let counter = 0;
+
+            this.moviesRes.forEach(el => {
+                el.genre_ids.forEach(id => {
+                    (id == fil.target.value) ? counter++ : '';
+                })
+            });
+            (counter > 0) ? this.movieEmpty = false : this.movieEmpty = true;
+
+            counter = 0;
+
+            this.seriesRes.forEach(el => {
+                el.genre_ids.forEach(id => {
+                    (id == fil.target.value) ? counter++ : '';
+                })
+            });
+            (counter > 0) ? this.tvshowEmpty = false : this.tvshowEmpty = true;
         }
     },
     // Instantly calls the API for the movies/shows genres
