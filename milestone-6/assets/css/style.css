@@ -34,12 +34,29 @@ nav > div {
 
 nav > div > span { color: lightgray; }
 
-main > h2 { 
+main > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+main .filter { 
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 5px;
+}
+
+main .filter h3 {
+    color: lightgray;
+    border: unset;
+    display: flex;
+    align-items: flex-end;
+    margin-right: 5px;
+}
+
+main > div > h2 { 
     color: lightgray;
     padding-top: 20px;
     font-size: 28px;
-    border-bottom: 2px solid lightgray;
-    margin-bottom: 15px;
  }
 
 #search_value { 
@@ -69,6 +86,8 @@ main > h2 {
     grid-template-columns: repeat(auto-fill, 225px);
     justify-content: space-between;
     grid-gap: 20px;
+    border-top: 2px solid lightgray;
+    padding-top: 10px;
 }
 
 .shows { margin-bottom: 15px; }
