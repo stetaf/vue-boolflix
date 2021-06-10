@@ -37,15 +37,15 @@
             <div v-show="moviesRes.length > 0">
                 <h2>Movies</h2>
                 <div class="filter">
-                    <h3>Filter by genre:</h3>
-        
-                    <select name="f_genre" id="f_genre">
-                        <option value="Boh">Boh</option>
+                    <h3>Filter results by genre:</h3>
+                    <select name="f_genre" id="f_genre" v-model="resultsFilter" @change="noResults($event)">
+                        <option value="" selected="selected">All</option>
+                        <option v-for="el_genre in genre" :value="el_genre.id" :selected="resultsFilter">{{ el_genre.name }}</option>
                     </select>
                 </div>
             </div>
             <div class="movies"  v-show="moviesRes.length > 0">
-                <div class="movie" v-for="(movie, index) in moviesRes" v-bind:style="[ (movie.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]"> 
+                <div class="movie" v-for="(movie, index) in moviesRes" v-if="((movie.genre_ids.includes(resultsFilter) || (resultsFilter == '')))" v-bind:style="[ (movie.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]"> 
                     <div>
                         <div class="movie_info">
                             <h3>{{ movie.title }}</h3>
@@ -67,19 +67,13 @@
                         </div>
                     </div>
                 </div>
+                <h2 class="no_results" v-if="movieEmpty == true">No results</h2>
             </div> 
             <div v-show="seriesRes.length > 0">
                 <h2>Tv Shows</h2>
-                <div class="filter">
-                    <h3>Filter by genre:</h3>
-        
-                    <select name="f_genre" id="f_genre">
-                        <option value="Boh">Boh</option>
-                    </select>
-                </div>
             </div>
             <div class="shows" v-show="seriesRes.length > 0">
-                <div class="tvshow" v-for="(tvshow, index) in seriesRes" v-bind:style="[ (tvshow.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]">
+                <div class="tvshow" v-for="(tvshow, index) in seriesRes" v-if="((tvshow.genre_ids.includes(resultsFilter) || (resultsFilter == '')))" v-bind:style="[ (tvshow.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]">
                     <div>
                         <div class="tvshow_info">
                             <h3>{{ tvshow.name }}</h3>
@@ -102,6 +96,7 @@
                     </div>
                 </div>
             </div>
+            <h2 class="no_results" v-if="tvshowEmpty == true">No results</h2>
             <div id="modal" class="modal">
                 <div class="modal-content">
                     <span class="close" @click="closeModal()">&times;</span>
