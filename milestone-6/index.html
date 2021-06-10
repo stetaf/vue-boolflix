@@ -25,8 +25,8 @@
                 <h1>Boolflix</h1>
                 <div>
                     <span>Search for a Movie or TV Show:</span>
-                    <input type="text" id="search_value" placeholder="Type something...">
-                    <input type="submit" value="Search" id="search_btn">
+                    <input type="text" id="search_value" placeholder="Type something..." v-on:keyup.enter="getResults()">
+                    <input type="submit" value="Search" id="search_btn" @click="getResults()">
                 </div>
             </nav>
         </header>

@@ -37,6 +37,39 @@ const app = new Vue({
             });
         },
         /**
+         * ### getResults
+         * Populates the movies and tvshows array upon search
+         */
+        getResults() {
+            let search = document.querySelector('#search_value').value;
+            
+            const movies = axios.get(this.moviesUrl + search);
+            const tvshows = axios.get(this.seriesUrl + search);
+
+            axios
+            .all([movies, tvshows])
+            .then(axios.spread((...responses) => {
+                this.moviesRes = responses[0].data.results;
+                this.moviesRes.forEach(element => {
+                    element.stars = Math.ceil(5 * (element.vote_average / 10));
+                    axios
+                    .get(this.moviesCast.replace('{movie_id}', element.id))
+                    .then(response => {
+                        element.cast = response.data.cast;
+                    })
+                });
+                this.seriesRes = responses[1].data.results;
+                this.seriesRes.forEach(element => {
+                    element.stars = Math.ceil(5 * (element.vote_average / 10));
+                    axios
+                    .get(this.seriesCast.replace('{tv_id}', element.id))
+                    .then(response => {
+                        element.cast = response.data.cast;
+                    })
+                });
+            }));
+        },
+        /**
          * ### openModalMovie
          * Given an index, populate the modal with all the infos and show it 
          * @param {Number} id 
@@ -116,41 +149,8 @@ const app = new Vue({
             (counter > 0) ? this.tvshowEmpty = false : this.tvshowEmpty = true;
         }
     },
-    // Instantly calls the API for the movies/shows genres
-    // Add an event listener to the search button for the API calls, gathering all the movies and the casts 
+    // Calls the API for the movies/shows genres
     mounted: function() {
         this.getGenres();
-
-        let button = document.querySelector('#search_btn')
-        
-        button.addEventListener("click", () => {
-            let search = document.querySelector('#search_value').value;
-            
-            const movies = axios.get(this.moviesUrl + search);
-            const tvshows = axios.get(this.seriesUrl + search);
-
-            axios
-            .all([movies, tvshows])
-            .then(axios.spread((...responses) => {
-                this.moviesRes = responses[0].data.results;
-                this.moviesRes.forEach(element => {
-                    element.stars = Math.ceil(5 * (element.vote_average / 10));
-                    axios
-                    .get(this.moviesCast.replace('{movie_id}', element.id))
-                    .then(response => {
-                        element.cast = response.data.cast;
-                    })
-                });
-                this.seriesRes = responses[1].data.results;
-                this.seriesRes.forEach(element => {
-                    element.stars = Math.ceil(5 * (element.vote_average / 10));
-                    axios
-                    .get(this.seriesCast.replace('{tv_id}', element.id))
-                    .then(response => {
-                        element.cast = response.data.cast;
-                    })
-                });
-            }));
-        });
     }
 });
