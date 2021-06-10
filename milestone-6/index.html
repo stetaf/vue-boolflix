@@ -67,8 +67,8 @@
                         </div>
                     </div>
                 </div>
-                <h2 class="no_results" v-if="movieEmpty == true">Nothing matches your filter</h2>
             </div> 
+            <h2 class="no_results" v-show="moviesRes.length > 0" v-if="movieEmpty == true">Nothing matches your filter</h2>
             <div class="controls" v-show="movControls">
                 <div class="left_arrow lightgray">
                     <i class="fas fa-arrow-alt-circle-left"></i>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-            <h2 class="no_results" v-if="tvshowEmpty == true">Nothing matches your filter</h2>
+            <h2 class="no_results" v-show="seriesRes.length > 0" v-if="tvshowEmpty == true">Nothing matches your filter</h2>
             <div class="s_controls" v-show="tvControls">
                 <div class="left_arrow lightgray">
                     <i class="fas fa-arrow-alt-circle-left"></i>
