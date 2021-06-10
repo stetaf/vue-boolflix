@@ -34,9 +34,9 @@
 
         <!-- Main -->
         <main class="p_lr25">
-            <div v-show="moviesRes.length > 0">
-                <h2 class="lightgray">Movies</h2>
-                <div class="filter">
+            <div>
+                <h2 class="smallTitle lightgray" v-if="(moviesRes.length > 0) || (seriesRes.length > 0)">Movies</h2>
+                <div class="filter" v-if="(moviesRes.length > 0) || (seriesRes.length > 0)">
                     <h3 class="lightgray">Filter results by genre:</h3>
                     <select name="f_genre" class="f_genre lightgray" v-model="resultsFilter" @change="noResults($event)">
                         <option value="" selected="selected">All</option>
@@ -68,6 +68,7 @@
                     </div>
                 </div>
             </div> 
+            <h2 class="no_results" v-show="(moviesRes.length > 0) || (seriesRes.length > 0)" v-if="moviesRes.length == 0">No Results</h2>
             <h2 class="no_results" v-show="moviesRes.length > 0" v-if="movieEmpty == true">Nothing matches your filter</h2>
             <div class="controls" v-show="movControls">
                 <div class="left_arrow lightgray">
@@ -77,9 +78,7 @@
                     <i class="fas fa-arrow-alt-circle-right"></i>
                 </div>
             </div>
-            <div v-show="seriesRes.length > 0">
-                <h2 class="lightgray">Tv Shows</h2>
-            </div>
+            <h2 class="smallTitle lightgray" v-if="(moviesRes.length > 0) || (seriesRes.length > 0)">Tv Shows</h2>
             <div class="shows" v-show="seriesRes.length > 0">
                 <div class="tvshow" v-for="(tvshow, index) in seriesRes" v-if="((tvshow.genre_ids.includes(resultsFilter) || (resultsFilter == '')))" v-bind:style="[ (tvshow.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]">
                     <div class="lightgray">
@@ -104,6 +103,7 @@
                     </div>
                 </div>
             </div>
+            <h2 class="no_results" v-show="(moviesRes.length > 0) || (seriesRes.length > 0)" v-if="seriesRes.length == 0">No Results</h2>
             <h2 class="no_results" v-show="seriesRes.length > 0" v-if="tvshowEmpty == true">Nothing matches your filter</h2>
             <div class="s_controls" v-show="tvControls">
                 <div class="left_arrow lightgray">
