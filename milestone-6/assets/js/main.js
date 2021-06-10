@@ -7,7 +7,8 @@ const app = new Vue({
         seriesUrl: 'https://api.themoviedb.org/3/search/tv?api_key=5eb5e38903b62b2d5616df76724f5b67&language=it_IT&query=',
         seriesRes: '',
         seriesCast: 'https://api.themoviedb.org/3/tv/{tv_id}/credits?api_key=5eb5e38903b62b2d5616df76724f5b67&language=en-US',
-        genreUrl: 'https://api.themoviedb.org/3/genre/movie/list?api_key=5eb5e38903b62b2d5616df76724f5b67&language=en-US',
+        movgenreUrl: 'https://api.themoviedb.org/3/genre/movie/list?api_key=5eb5e38903b62b2d5616df76724f5b67&language=en-US',
+        tvgenreUrl: 'https://api.themoviedb.org/3/genre/tv/list?api_key=5eb5e38903b62b2d5616df76724f5b67&language=en-US',
         genre: '',
         notFound: './assets/img/not-found.jpg',
         resultsFilter: '',
@@ -32,11 +33,14 @@ const app = new Vue({
          * Retreieves all the genres avalaible
          */
         getGenres() {
+            const movieGenres = axios.get(this.movgenreUrl);
+            const tvshowGenres = axios.get(this.tvgenreUrl);
+
             axios
-            .get(this.genreUrl)
-            .then(response => {
-                this.genre = response.data.genres;
-            });
+            .all([movieGenres, tvshowGenres])
+            .then(axios.spread((...responses) => {
+                this.genre = [...responses[0].data.genres, ...responses[1].data.genres];
+            }));
         },
         /**
          * ### getResults
@@ -73,6 +77,8 @@ const app = new Vue({
                     this.handleControls(1);
                 }));
             }          
+            this.genre.sort();
+
         },
         /**
          * ### openModalMovie
@@ -134,9 +140,7 @@ const app = new Vue({
          * Upon selecting an option in the genre filter, determine whether there are results given the genre id or not
          * @param {Number} fil 
          */
-        async noResults(fil) {
-            await this.$nextTick();
-
+        noResults(fil) {
             let counter = 0;
 
             this.moviesRes.forEach(el => {
