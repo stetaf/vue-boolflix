@@ -44,34 +44,35 @@ const app = new Vue({
          */
         getResults() {
             let search = document.querySelector('#search_value').value;
-                        
-            const movies = axios.get(this.moviesUrl + search);
-            const tvshows = axios.get(this.seriesUrl + search);
-
-            axios
-            .all([movies, tvshows])
-            .then(axios.spread((...responses) => {
-                this.moviesRes = responses[0].data.results;
-                this.moviesRes.forEach(element => {
-                    element.stars = Math.ceil(5 * (element.vote_average / 10));
-                    axios
-                    .get(this.moviesCast.replace('{movie_id}', element.id))
-                    .then(response => {
-                        element.cast = response.data.cast;
-                    })
-                });
-                this.seriesRes = responses[1].data.results;
-                this.seriesRes.forEach(element => {
-                    element.stars = Math.ceil(5 * (element.vote_average / 10));
-                    axios
-                    .get(this.seriesCast.replace('{tv_id}', element.id))
-                    .then(response => {
-                        element.cast = response.data.cast;
-                    })
-                });
-                this.handleControls(0);
-                this.handleControls(1);
-            }));
+            if (search.length > 0) {
+                const movies = axios.get(this.moviesUrl + search);
+                const tvshows = axios.get(this.seriesUrl + search);
+    
+                axios
+                .all([movies, tvshows])
+                .then(axios.spread((...responses) => {
+                    this.moviesRes = responses[0].data.results;
+                    this.moviesRes.forEach(element => {
+                        element.stars = Math.ceil(5 * (element.vote_average / 10));
+                        axios
+                        .get(this.moviesCast.replace('{movie_id}', element.id))
+                        .then(response => {
+                            element.cast = response.data.cast;
+                        })
+                    });
+                    this.seriesRes = responses[1].data.results;
+                    this.seriesRes.forEach(element => {
+                        element.stars = Math.ceil(5 * (element.vote_average / 10));
+                        axios
+                        .get(this.seriesCast.replace('{tv_id}', element.id))
+                        .then(response => {
+                            element.cast = response.data.cast;
+                        })
+                    });
+                    this.handleControls(0);
+                    this.handleControls(1);
+                }));
+            }          
         },
         /**
          * ### openModalMovie
