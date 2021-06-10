@@ -238,5 +238,19 @@ const app = new Vue({
         document.addEventListener("mouseup", function(){
             if (timer) clearInterval(timer);
         });
+
+        // Scroll with arrows keys
+        document.onkeydown = () => {
+            switch (event.keyCode) {
+                case 39: // Right key
+                    this.scrollRight(0);
+                    this.scrollRight(1);    
+                    break;
+                case 37: // Left key
+                    this.scrollLeft(0);
+                    this.scrollLeft(1);    
+                    break;
+            }
+        }
     }
 });
