@@ -44,7 +44,7 @@
                     </select>
                 </div>
             </div>
-            <div class="movies"  v-show="moviesRes.length > 0">
+            <div class="movies" v-show="moviesRes.length > 0">
                 <div class="movie" v-for="(movie, index) in moviesRes" v-if="((movie.genre_ids.includes(resultsFilter) || (resultsFilter == '')))" v-bind:style="[ (movie.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]"> 
                     <div>
                         <div class="movie_info">
@@ -69,6 +69,14 @@
                 </div>
                 <h2 class="no_results" v-if="movieEmpty == true">No results</h2>
             </div> 
+            <div class="controls" v-show="movControls">
+                <div class="left_arrow">
+                    <i class="fas fa-arrow-alt-circle-left"></i>
+                </div>
+                <div class="right_arrow">
+                    <i class="fas fa-arrow-alt-circle-right"></i>
+                </div>
+            </div>
             <div v-show="seriesRes.length > 0">
                 <h2>Tv Shows</h2>
             </div>
@@ -97,6 +105,14 @@
                 </div>
             </div>
             <h2 class="no_results" v-if="tvshowEmpty == true">No results</h2>
+            <div class="s_controls" v-show="tvControls">
+                <div class="left_arrow">
+                    <i class="fas fa-arrow-alt-circle-left"></i>
+                </div>
+                <div class="right_arrow">
+                    <i class="fas fa-arrow-alt-circle-right"></i>
+                </div>
+            </div>
             <div id="modal" class="modal">
                 <div class="modal-content">
                     <span class="close" @click="closeModal()">&times;</span>
