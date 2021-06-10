@@ -12,7 +12,9 @@ const app = new Vue({
         notFound: './assets/img/not-found.jpg',
         resultsFilter: '',
         movieEmpty: null,
-        tvshowEmpty: null
+        tvshowEmpty: null,
+        movControls: null,
+        tvControls: null
     },
     methods: {
         /**
@@ -42,7 +44,7 @@ const app = new Vue({
          */
         getResults() {
             let search = document.querySelector('#search_value').value;
-            
+                        
             const movies = axios.get(this.moviesUrl + search);
             const tvshows = axios.get(this.seriesUrl + search);
 
@@ -50,6 +52,7 @@ const app = new Vue({
             .all([movies, tvshows])
             .then(axios.spread((...responses) => {
                 this.moviesRes = responses[0].data.results;
+                (this.moviesRes.length > 0) ? this.showControls(0) : this.hideControls(0);
                 this.moviesRes.forEach(element => {
                     element.stars = Math.ceil(5 * (element.vote_average / 10));
                     axios
@@ -59,6 +62,7 @@ const app = new Vue({
                     })
                 });
                 this.seriesRes = responses[1].data.results;
+                (this.seriesRes.length > 0) ? this.showControls(1) : this.hideControls(1);
                 this.seriesRes.forEach(element => {
                     element.stars = Math.ceil(5 * (element.vote_average / 10));
                     axios
@@ -147,10 +151,86 @@ const app = new Vue({
                 })
             });
             (counter > 0) ? this.tvshowEmpty = false : this.tvshowEmpty = true;
+        },
+        /**
+         * ### scrollRight
+         * Scroll right movies or shows section
+         * @param {Number} id 
+         */
+        scrollRight(id) {
+            if (id == 0) {
+                document.querySelector('.movies').scrollLeft += 20;
+            } else {
+                document.querySelector('.shows').scrollLeft += 20;
+            }
+        },
+         /**
+          * ### scrollLeft
+         * Scroll left movies or shows section
+         * @param {Number} id 
+         */       
+        scrollLeft(id) {
+            if (id == 0) {
+                document.querySelector('.movies').scrollLeft -= 20;
+            } else {
+                document.querySelector('.shows').scrollLeft -= 20;
+            }
+        },
+        /**
+         * ### showControls
+         * Show arrow controls for movies or shows section
+         * @param {Number} id 
+         */
+        showControls(id) {
+            if (id == 0) this.movControls = true;
+            if (id == 1) this.tvControls = true;
+        },
+         /**
+         * ### hideControls
+         * Hide arrow controls for movies or shows section
+         * @param {Number} id 
+         */
+        hideControls(id) {
+            if (id == 0) this.movControls = false;
+            if (id == 1) this.tvControls = false;
         }
     },
     // Calls the API for the movies/shows genres
     mounted: function() {
         this.getGenres();
+        let timer = null;
+
+        const rightArrowM = document.querySelector('.controls .right_arrow');
+        const leftArrowM = document.querySelector('.controls .left_arrow');
+        const rightArrowS = document.querySelector('.s_controls .right_arrow');
+        const leftArrowS = document.querySelector('.s_controls .left_arrow');
+        
+        rightArrowM.addEventListener("mousedown", () => {
+            timer = setInterval(() => {
+                this.scrollRight(0);
+           }, 10);
+        });
+
+        leftArrowM.addEventListener("mousedown", () => {
+            timer = setInterval(() => {
+                this.scrollLeft(0);
+           }, 10);
+        });
+
+        rightArrowS.addEventListener("mousedown", () => {
+            timer = setInterval(() => {
+                this.scrollRight(1);
+           }, 10);
+        });
+
+        leftArrowS.addEventListener("mousedown", () => {
+            timer = setInterval(() => {
+                this.scrollLeft(1);
+           }, 10);
+        });
+
+        document.addEventListener("mouseup", function(){
+            if (timer) clearInterval(timer);
+        });
     }
 });
