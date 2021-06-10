@@ -134,7 +134,7 @@ const app = new Vue({
          */
         async noResults(fil) {
             await this.$nextTick();
-            
+
             let counter = 0;
 
             this.moviesRes.forEach(el => {
@@ -164,7 +164,6 @@ const app = new Vue({
         scrollRight(id) {
             if (id == 0) {
                 document.querySelector('.movies').scrollLeft += 20;
-                console.log(document.querySelector('.movies').scrollWidth, document.documentElement.clientWidth);
             } else {
                 document.querySelector('.shows').scrollLeft += 20;
             }
@@ -190,7 +189,6 @@ const app = new Vue({
             if (id == 0) {
                 timer = setTimeout(() => {
                     const mov = document.querySelector('.movies');
-                    console.log((mov.scrollWidth > mov.clientWidth));
                     (mov.scrollWidth > mov.clientWidth) ? this.movControls = true : this.movControls = false;
                 }, 10);
             } 
