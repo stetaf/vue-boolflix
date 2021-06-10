@@ -32,8 +32,6 @@ nav > div {
     align-items: center;
 }
 
-nav > div > span { color: lightgray; }
-
 main > div {
     display: flex;
     justify-content: space-between;
@@ -46,7 +44,6 @@ main .filter {
 }
 
 main .filter h3 {
-    color: lightgray;
     border: unset;
     display: flex;
     align-items: flex-end;
@@ -54,7 +51,6 @@ main .filter h3 {
 }
 
 main > div > h2 { 
-    color: lightgray;
     padding-top: 20px;
     font-size: 28px;
  }
@@ -66,7 +62,6 @@ main > div > h2 {
 
 .f_genre {     
     all: unset;
-    color: lightgray;
     font-weight: bolder;
     appearance: revert;
     background: #171815;
@@ -110,7 +105,6 @@ main > div > h2 {
 .right_arrow,
 .left_arrow { 
     font-size: 20px;
-    color: lightgray;
 }
 
 ::-webkit-scrollbar {
@@ -150,7 +144,6 @@ main > div > h2 {
 .movie > div,
 .tvshow > div {
     background-color: rgb(23 24 21 / 87%);
-    color: lightgray;
     width: 100%;
     height: 100%;
     flex-direction: column;
@@ -271,3 +264,5 @@ h4 {
 
 /* FUNC */
 .p_lr25 { padding: 0 25px; }
+
+.lightgray { color: lightgray; }

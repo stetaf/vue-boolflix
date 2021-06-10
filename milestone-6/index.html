@@ -24,7 +24,7 @@
             <nav>
                 <h1>Boolflix</h1>
                 <div>
-                    <span>Search for a Movie or TV Show:</span>
+                    <span class="lightgray">Search for a Movie or TV Show:</span>
                     <input type="text" id="search_value" placeholder="Type something..." v-on:keyup.enter="getResults()">
                     <input type="submit" value="Search" id="search_btn" @click="getResults()">
                 </div>
@@ -35,10 +35,10 @@
         <!-- Main -->
         <main class="p_lr25">
             <div v-show="moviesRes.length > 0">
-                <h2>Movies</h2>
+                <h2 class="lightgray">Movies</h2>
                 <div class="filter">
-                    <h3>Filter results by genre:</h3>
-                    <select name="f_genre" class="f_genre" v-model="resultsFilter" @change="noResults($event)">
+                    <h3 class="lightgray">Filter results by genre:</h3>
+                    <select name="f_genre" class="f_genre lightgray" v-model="resultsFilter" @change="noResults($event)">
                         <option value="" selected="selected">All</option>
                         <option v-for="el_genre in genre" :value="el_genre.id" :selected="resultsFilter">{{ el_genre.name }}</option>
                     </select>
@@ -46,7 +46,7 @@
             </div>
             <div class="movies" v-show="moviesRes.length > 0">
                 <div class="movie" v-for="(movie, index) in moviesRes" v-if="((movie.genre_ids.includes(resultsFilter) || (resultsFilter == '')))" v-bind:style="[ (movie.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + movie.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]"> 
-                    <div>
+                    <div class="lightgray">
                         <div class="movie_info">
                             <h3>{{ movie.title }}</h3>
                             <h5>{{ movie.original_title }}</h5>
@@ -67,22 +67,22 @@
                         </div>
                     </div>
                 </div>
-                <h2 class="no_results" v-if="movieEmpty == true">No results</h2>
+                <h2 class="no_results" v-if="movieEmpty == true">Nothing matches your filter</h2>
             </div> 
             <div class="controls" v-show="movControls">
-                <div class="left_arrow">
+                <div class="left_arrow lightgray">
                     <i class="fas fa-arrow-alt-circle-left"></i>
                 </div>
-                <div class="right_arrow">
+                <div class="right_arrow lightgray">
                     <i class="fas fa-arrow-alt-circle-right"></i>
                 </div>
             </div>
             <div v-show="seriesRes.length > 0">
-                <h2>Tv Shows</h2>
+                <h2 class="lightgray">Tv Shows</h2>
             </div>
             <div class="shows" v-show="seriesRes.length > 0">
                 <div class="tvshow" v-for="(tvshow, index) in seriesRes" v-if="((tvshow.genre_ids.includes(resultsFilter) || (resultsFilter == '')))" v-bind:style="[ (tvshow.poster_path) ? {'background-image': 'url(https://image.tmdb.org/t/p/w342' + tvshow.poster_path + ')'} : { backgroundImage: 'url(' + notFound + ')', backgroundPosition:'center', backgroundSize:'290px' } ]">
-                    <div>
+                    <div class="lightgray">
                         <div class="tvshow_info">
                             <h3>{{ tvshow.name }}</h3>
                             <h5>{{ tvshow.original_name }}</h5>
@@ -104,12 +104,12 @@
                     </div>
                 </div>
             </div>
-            <h2 class="no_results" v-if="tvshowEmpty == true">No results</h2>
+            <h2 class="no_results" v-if="tvshowEmpty == true">Nothing matches your filter</h2>
             <div class="s_controls" v-show="tvControls">
-                <div class="left_arrow">
+                <div class="left_arrow lightgray">
                     <i class="fas fa-arrow-alt-circle-left"></i>
                 </div>
-                <div class="right_arrow">
+                <div class="right_arrow lightgray">
                     <i class="fas fa-arrow-alt-circle-right"></i>
                 </div>
             </div>
