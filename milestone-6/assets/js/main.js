@@ -35,11 +35,23 @@ const app = new Vue({
         getGenres() {
             const movieGenres = axios.get(this.movgenreUrl);
             const tvshowGenres = axios.get(this.tvgenreUrl);
+            let temp = [];
+            let temp1 = [];
 
             axios
             .all([movieGenres, tvshowGenres])
             .then(axios.spread((...responses) => {
-                this.genre = [...responses[0].data.genres, ...responses[1].data.genres];
+                responses[0].data.genres.forEach(el => {
+                    temp.push(el);
+                });
+                responses[1].data.genres.forEach(el => {
+                    temp1.push(el);
+                });
+                let temp2 = temp1.concat(temp).filter(function(o) {  
+                    return this[o.id] ? false : this[o.id] = true;
+                }, {});
+                temp2.sort(this.nameSort);
+                this.genre = temp2;
             }));
         },
         /**
@@ -77,8 +89,6 @@ const app = new Vue({
                     this.handleControls(1);
                 }));
             }          
-            this.genre.sort();
-
         },
         /**
          * ### openModalMovie
@@ -204,7 +214,21 @@ const app = new Vue({
                     (tv.scrollWidth > tv.clientWidth) ? this.tvControls = true : this.tvControls = false;
                 }, 10);
             }
-        }        
+        },
+        /**
+         * ### nameSort
+         * Sort the genre array by obj name
+         * @param {Object} first 
+         * @param {Object} second 
+         */
+        nameSort(first, second) {
+            if (first.name < second.name) {
+                return -1;
+            } else if (first.name > second.year) {
+                return 1;
+            }
+            return 0;
+        }
     },
     // Calls the API for the movies/shows genres
     mounted: function() {
