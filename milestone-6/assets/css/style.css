@@ -72,6 +72,8 @@ main > div > h2 {
     background: #171815;
     padding: 0 5px;
     border-radius: 1px;
+    position: relative;
+    top: 2px;
 }
 
 #search_value { 
