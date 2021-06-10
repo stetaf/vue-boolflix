@@ -38,7 +38,7 @@
                 <h2>Movies</h2>
                 <div class="filter">
                     <h3>Filter results by genre:</h3>
-                    <select name="f_genre" id="f_genre" v-model="resultsFilter" @change="noResults($event)">
+                    <select name="f_genre" class="f_genre" v-model="resultsFilter" @change="noResults($event)">
                         <option value="" selected="selected">All</option>
                         <option v-for="el_genre in genre" :value="el_genre.id" :selected="resultsFilter">{{ el_genre.name }}</option>
                     </select>
