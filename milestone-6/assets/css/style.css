@@ -99,22 +99,40 @@ main > div > h2 {
 
 .movies, 
 .shows { 
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 225px);
-    justify-content: space-between;
-    grid-gap: 20px;
-    border-top: 2px solid lightgray;
-    padding-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow-x: hidden;
+    position: relative;
 }
 
-.shows { margin-bottom: 15px; }
+.right_arrow,
+.left_arrow { 
+    font-size: 20px;
+    color: lightgray;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+.right_arrow i, 
+.left_arrow i {
+    background-color: #171815;
+    border-radius: 50%;
+    border: 1px solid #171815;
+}
 
 .movie, 
 .tvshow { 
-    height: 350px;
     border: 1px solid #383737;
     position: relative;
     background-size: cover;
+    min-height: 320px;
+    min-width: 215px;
+    margin-right: 5px;
 }
 
 .movie > div,
