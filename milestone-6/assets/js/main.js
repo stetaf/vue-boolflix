@@ -100,7 +100,7 @@ const app = new Vue({
             document.querySelector('#mtitle').innerText = this.moviesRes[id]['title'];  
             document.querySelector('#overview').innerText = this.moviesRes[id]['overview'];  
             let cast = '';
-            for (i = 0; i < Math.min(this.seriesRes[id]['cast'].length, 5); i++) {
+            for (i = 0; i < Math.min(this.moviesRes[id]['cast'].length, 5); i++) {
                 cast += '<li>' + this.moviesRes[id]['cast'][i]['name'] + '</li>';
             }
             document.querySelector('#cast').innerHTML = cast;
