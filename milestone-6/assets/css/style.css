@@ -59,6 +59,11 @@ main > div > h2 {
     font-size: 28px;
  }
 
+.no_results {
+    color: #6f6f6f;
+    font-size: 22px;
+}
+
 #search_value { 
     padding: 5px 10px;
     border-radius: 3px;
