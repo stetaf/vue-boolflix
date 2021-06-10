@@ -70,6 +70,7 @@ const app = new Vue({
                     })
                 });
                 this.handleControls(0);
+                this.handleControls(1);
             }));
         },
         /**
