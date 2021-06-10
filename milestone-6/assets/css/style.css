@@ -64,6 +64,16 @@ main > div > h2 {
     font-size: 22px;
 }
 
+.f_genre {     
+    all: unset;
+    color: lightgray;
+    font-weight: bolder;
+    appearance: revert;
+    background: #171815;
+    padding: 0 5px;
+    border-radius: 1px;
+}
+
 #search_value { 
     padding: 5px 10px;
     border-radius: 3px;
