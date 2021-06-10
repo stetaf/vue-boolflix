@@ -13,8 +13,8 @@ const app = new Vue({
         resultsFilter: '',
         movieEmpty: null,
         tvshowEmpty: null,
-        movControls: null,
-        tvControls: null
+        movControls: false,
+        tvControls: false
     },
     methods: {
         /**
@@ -52,7 +52,6 @@ const app = new Vue({
             .all([movies, tvshows])
             .then(axios.spread((...responses) => {
                 this.moviesRes = responses[0].data.results;
-                (this.moviesRes.length > 0) ? this.showControls(0) : this.hideControls(0);
                 this.moviesRes.forEach(element => {
                     element.stars = Math.ceil(5 * (element.vote_average / 10));
                     axios
@@ -62,7 +61,6 @@ const app = new Vue({
                     })
                 });
                 this.seriesRes = responses[1].data.results;
-                (this.seriesRes.length > 0) ? this.showControls(1) : this.hideControls(1);
                 this.seriesRes.forEach(element => {
                     element.stars = Math.ceil(5 * (element.vote_average / 10));
                     axios
@@ -71,6 +69,7 @@ const app = new Vue({
                         element.cast = response.data.cast;
                     })
                 });
+                this.handleControls(0);
             }));
         },
         /**
@@ -133,7 +132,9 @@ const app = new Vue({
          * Upon selecting an option in the genre filter, determine whether there are results given the genre id or not
          * @param {Number} fil 
          */
-        noResults(fil) {
+        async noResults(fil) {
+            await this.$nextTick();
+            
             let counter = 0;
 
             this.moviesRes.forEach(el => {
@@ -141,8 +142,8 @@ const app = new Vue({
                     (id == fil.target.value) ? counter++ : '';
                 })
             });
-            (counter > 0) ? this.movieEmpty = false : this.movieEmpty = true;
-
+            (counter > 0 || (fil.target.value == '')) ? this.movieEmpty = false : this.movieEmpty = true;
+            
             counter = 0;
 
             this.seriesRes.forEach(el => {
@@ -150,7 +151,10 @@ const app = new Vue({
                     (id == fil.target.value) ? counter++ : '';
                 })
             });
-            (counter > 0) ? this.tvshowEmpty = false : this.tvshowEmpty = true;
+            (counter > 0 || (fil.target.value == ''))  ? this.tvshowEmpty = false : this.tvshowEmpty = true;
+
+            this.handleControls(0);
+            this.handleControls(1);
         },
         /**
          * ### scrollRight
@@ -160,6 +164,7 @@ const app = new Vue({
         scrollRight(id) {
             if (id == 0) {
                 document.querySelector('.movies').scrollLeft += 20;
+                console.log(document.querySelector('.movies').scrollWidth, document.documentElement.clientWidth);
             } else {
                 document.querySelector('.shows').scrollLeft += 20;
             }
@@ -177,23 +182,25 @@ const app = new Vue({
             }
         },
         /**
-         * ### showControls
-         * Show arrow controls for movies or shows section
+         * ### handleControls
+         * Show or hide the arrow controls for movies or shows section
          * @param {Number} id 
          */
-        showControls(id) {
-            if (id == 0) this.movControls = true;
-            if (id == 1) this.tvControls = true;
-        },
-         /**
-         * ### hideControls
-         * Hide arrow controls for movies or shows section
-         * @param {Number} id 
-         */
-        hideControls(id) {
-            if (id == 0) this.movControls = false;
-            if (id == 1) this.tvControls = false;
-        }
+        handleControls(id) {
+            if (id == 0) {
+                timer = setTimeout(() => {
+                    const mov = document.querySelector('.movies');
+                    console.log((mov.scrollWidth > mov.clientWidth));
+                    (mov.scrollWidth > mov.clientWidth) ? this.movControls = true : this.movControls = false;
+                }, 10);
+            } 
+            if (id == 1) {
+                timer = setTimeout(() => {
+                    const tv = document.querySelector('.shows');
+                    (tv.scrollWidth > tv.clientWidth) ? this.tvControls = true : this.tvControls = false;
+                }, 10);
+            }
+        }        
     },
     // Calls the API for the movies/shows genres
     mounted: function() {
