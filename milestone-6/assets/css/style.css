@@ -269,6 +269,12 @@ h4 {
   #cast li,
   #genre { font-size: 14px; }
 
+  .controls,
+  .s_controls {
+    display: flex;
+    align-items: center;
+  }
+
 /* FUNC */
 .p_lr25 { padding: 0 25px; }
 
