@@ -50,6 +50,13 @@ main .filter h3 {
     margin-right: 5px;
 }
 
+.home { 
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 75px);
+}
+
 .smallTitle { 
     padding-top: 20px;
     font-size: 28px;

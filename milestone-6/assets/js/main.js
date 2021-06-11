@@ -15,7 +15,8 @@ const app = new Vue({
         movieEmpty: null,
         tvshowEmpty: null,
         movControls: false,
-        tvControls: false
+        tvControls: false,
+        results: false
     },
     methods: {
         /**
@@ -88,7 +89,8 @@ const app = new Vue({
                     this.handleControls(0);
                     this.handleControls(1);
                 }));
-            }          
+            }      
+            this.results = true;    
         },
         /**
          * ### openModalMovie
